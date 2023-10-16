@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love for Iulia</title>
+    <style>
+        body {
+            background-color: pink;
+            color: black;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            cursor: pointer;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: none;
+        }
+    </style>
+    <script>
+        let isQuoteVisible = false;
+
+        function toggleContent() {
+            const loveText = document.getElementById('loveText');
+            const quoteText = document.getElementById('quoteText');
+            const flowerImage = document.getElementById('flowerImage');
+
+            isQuoteVisible = !isQuoteVisible;
+
+            if (isQuoteVisible) {
+                loveText.style.display = 'none';
+                quoteText.style.display = 'block';
+                flowerImage.style.display = 'none';
+            } else {
+                loveText.style.display = 'block';
+                quoteText.style.display = 'none';
+                flowerImage.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body onclick="toggleContent()">
+    <h1 id="loveText">I love Iulia from the bottom of my heart</h1>
+    <h1 id="quoteText" style="display: none;">"But, soft! what light through yonder window breaks?
+    It is the east, and Juliet is the sun."</h1>
+    <img id="flowerImage" src="https://www.travelandleisure.com/thmb/WDrISq-WVEK8JILtZ1aCfsbcFVk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/blossoms-JCBUPDATE0318-bdd7bedb40cb4f1a84d05f98f06bd133.jpg" alt="Flower Image">
+</body>
+</html>
