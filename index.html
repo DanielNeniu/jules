@@ -6,16 +6,41 @@
     <title>Love for Iulia</title>
     <style>
         body {
-            background-color: pink;
-            color: black;
+            background-color: #ffcccb;
+            color: #000;
+            font-family: 'Georgia', serif;
             text-align: center;
-            font-family: 'Arial', sans-serif;
-            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            padding: 10px;
+            cursor: pointer;
+            transition: color 0.5s, transform 0.5s;
+        }
+
+        h1:hover {
+            color: #ff69b4;
+            transform: scale(1.1);
+        }
+
+        .quote {
+            display: none;
+        }
+
         img {
             max-width: 100%;
             height: auto;
             display: none;
+            margin-top: 20px;
         }
     </style>
     <script>
@@ -42,8 +67,8 @@
 </head>
 <body onclick="toggleContent()">
     <h1 id="loveText">I love Iulia from the bottom of my heart</h1>
-    <h1 id="quoteText" style="display: none;">"But, soft! what light through yonder window breaks?
+    <h1 id="quoteText" class="quote">"But, soft! what light through yonder window breaks?
     It is the east, and Juliet is the sun."</h1>
-    <img id="flowerImage" src="https://www.travelandleisure.com/thmb/WDrISq-WVEK8JILtZ1aCfsbcFVk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/blossoms-JCBUPDATE0318-bdd7bedb40cb4f1a84d05f98f06bd133.jpg" alt="Flower Image">
+    <img id="flowerImage" src="https://via.placeholder.com/400" alt="Flower Image">
 </body>
 </html>
