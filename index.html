@@ -8,177 +8,85 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f7e6f2;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url('https://i.pinimg.com/736x/c2/a5/e2/c2a5e2156eeb68abbbfe01e68ef41d54.jpg'); 
+            background: linear-gradient(to bottom right, #ff66b2, #ffccff); /* Pink gradient background */
+            color: rainbow; /* Rainbow-colored text */
+            text-align: center;
             animation: changeBg 20s infinite alternate;
         }
 
         @keyframes changeBg {
-            from { background-color: #f7e6f2; }
-            to { background-color: #fff1e0; }
+            from { background: linear-gradient(to bottom right, #ff66b2, #ffccff); }
+            to { background: linear-gradient(to bottom right, #ffccff, #ff66b2); }
         }
 
-        #header {
-            background-color: #ff8ba5;
-            color: #663300;
-            text-align: center;
+        .slide {
+            display: none;
             padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            font-size: 2em; /* Increased font size */
+        }
+
+        .active {
+            display: block;
+        }
+
+        .slide:hover {
+            background: linear-gradient(to bottom right, #000000, #ff66b2); /* Black to pink gradient on hover */
+        }
+
+        #endText {
             font-size: 1.5em;
-            cursor: pointer;
-            user-select: none;
-            border-radius: 15px;
-            margin: 10px;
-        }
-
-        #about,
-        #quotes,
-        #flowers {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            text-align: center;
-            border-radius: 15px;
-            margin: 10px;
-        }
-
-        .carousel {
-            overflow: hidden;
-            white-space: nowrap;
-            font-size: 1.2em;
-        }
-
-        .quote {
-            display: none;
-            padding: 10px;
-        }
-
-        #quoteButton {
-            background-color: #ff6666;
-            color: white;
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-
-        #flowers img {
-            max-width: 100%; /* Ensure images don't exceed the width of their container */
-            border-radius: 20px;
-            display: none;
-        }
-
-        #aboutContent {
-            max-width: 800px; /* Adjusted max-width for better readability */
-            margin: 0 auto;
-        }
-
-        .interactionButton {
-            background-color: #ffcc99;
-            color: #663300;
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            margin-top: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div id="header" onclick="changeText()">I love Iulia from the bottom of my heart</div>
-
-    <div id="about">
+    <div id="about" class="slide active" onclick="showNextSlide()">
         <h2>About Me</h2>
         <div id="aboutContent">
             <p>This is a brief introduction about me and why I love Iulia so much. I could talk for hours about our adventures, the laughter, and the love that binds us together.</p>
         </div>
     </div>
 
-    <div id="quotes">
+    <div id="quotes" class="slide" onclick="showNextSlide()">
         <h2>Quotes</h2>
         <div class="carousel" id="quoteCarousel">
-            <div class="quote">"To be or not to be, that is the question." - Hamlet</div>
+            <div class="quote active">"To be or not to be, that is the question." - Hamlet</div>
             <div class="quote">"Love looks not with the eyes, but with the mind." - A Midsummer Night's Dream</div>
             <div class="quote"> "To live is to suffer!"</div>
         </div>
-        <button id="quoteButton" onclick="showNextQuote()">Show Next Quote</button>
     </div>
 
-    <div id="flowers">
-        <img src="https://www.gotokyo.org/en/story/guide/hanami-guide/images/xsg009_1376_202.jpg.pagespeed.ic.gK_RKSB0Y7.jpg"  alt="Beautiful Flowers">
-        <button class="interactionButton" onclick="revealImage()">Reveal Image</button>
+    <div id="flowers" class="slide" onclick="showNextSlide()">
+        <img id="flowerImage" src="https://www.gotokyo.org/en/story/guide/hanami-guide/images/xsg009_1376_202.jpg.pagespeed.ic.gK_RKSB0Y7.jpg"  alt="Beautiful Flowers">
+    </div>
+
+    <div id="endText" class="slide">
+        I simply love you!
     </div>
 
     <script>
-    let currentQuoteIndex = 0;
-    let currentImageIndex = 0;
-    let quoteInterval;
-    let imageInterval;
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        let imageInterval;
 
-    // Array of image URLs
-    const imageUrls = [
-        'https://www.gotokyo.org/en/story/guide/hanami-guide/images/xsg009_1376_202.jpg.pagespeed.ic.gK_RKSB0Y7.jpg',
-        'https://www.holidify.com/images/cmsuploads/compressed/1_20200302224438.jpg',
-    ];
+        function showNextSlide() {
+            slides[currentSlideIndex].classList.remove('active'); // Hide the current slide
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length; // Move to the next slide
+            slides[currentSlideIndex].classList.add('active'); // Show the next slide
 
-    function changeText() {
-        const header = document.getElementById('header');
-        header.innerText = "Iulia, you are my sunshine!";
-        header.style.backgroundColor = '#ffd699';
-        header.style.color = '#663300';
-    }
-
-    function showNextQuote() {
-        const quotes = document.getElementsByClassName('quote');
-        quotes[currentQuoteIndex].style.display = 'none'; // Hide the current quote
-
-        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length; // Move to the next quote
-
-        quotes[currentQuoteIndex].style.display = 'inline-block'; // Show the next quote
-    }
-
-    function showFlowers() {
-        const flowers = document.getElementById('flowers');
-        flowers.style.display = 'block';
-        animateFlowers();
-    }
-
-    function animateFlowers() {
-        const flowers = document.getElementById('flowers');
-        flowers.style.animation = 'fadeIn 2s ease-in-out';
-    }
-
-    function revealImage() {
-        const image = document.getElementById('flowers').getElementsByTagName('img')[0];
-
-        // Display the next image
-        image.src = imageUrls[currentImageIndex];
-        currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
-
-        image.style.display = 'block';
-        document.getElementById('quoteButton').disabled = true; // Disable the button
-    }
-
-    // Start the quote loop
-    quoteInterval = setInterval(showNextQuote, 3000); // Change quote every 3 seconds
-
-    // Start the image reveal loop
-    imageInterval = setInterval(revealImage, 5000); // Reveal image every 5 seconds
-</script>
-
-<!-- ... (remaining styles and HTML code remain unchanged) ... -->
-
-    </script>
-
-    <style>
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            if (currentSlideIndex === slides.length - 1) {
+                // If it's the last slide, start the image reveal loop
+                imageInterval = setInterval(showNextSlide, 5000); // Show next slide every 5 seconds
+            }
         }
-    </style>
+    </script>
 </body>
 </html>
