@@ -24,11 +24,14 @@
             margin: 0;
             padding: 10px;
             cursor: pointer;
-            transition: color 0.5s, transform 0.5s;
+            transition: transform 0.5s;
         }
 
         h1:hover {
-            color: #ff69b4;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            color: transparent;
+            -webkit-background-clip: text;
+            transition: transform 0.5s, background 0.5s;
             transform: scale(1.1);
         }
 
