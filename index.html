@@ -8,84 +8,238 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom right, #ff66b2, #ffccff); /* Pink gradient background */
-            color: rainbow; /* Rainbow-colored text */
-            text-align: center;
+            background-color: #f7e6f2;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: linear-gradient(to bottom, #ff99cc, #ff6666);
             animation: changeBg 20s infinite alternate;
         }
 
-        @keyframes changeBg {
-            from { background: linear-gradient(to bottom right, #ff66b2, #ffccff); }
-            to { background: linear-gradient(to bottom right, #ffccff, #ff66b2); }
-        }
-
-        .slide {
-            display: none;
-            padding: 20px;
+        #header {
+            background-color: #ff8ba5;
+            color: #663300;
             text-align: center;
+            padding: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            user-select: none;
             border-radius: 15px;
             margin: 10px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        }
+
+        #Sunshine {
+            background-color: #ff9999;
+            color: #202020;
+            text-align: center;
+            padding: 20px;
+            font-size: medium;
             cursor: pointer;
-            font-size: 2em; /* Increased font size */
+            user-select: none;
+            border-radius: auto;
+            margin: auto;
+            
         }
 
-        .active {
-            display: block;
+        #End {
+            background-color: #eb7676;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #202020; /* Text color */
+            font-size: 3.0em;
         }
 
-        .slide:hover {
-            background: linear-gradient(to bottom right, #000000, #ff66b2); /* Black to pink gradient on hover */
+
+        @keyframes changeBg {
+            from { background-color: #ff99cc; }
+            to { background-color: #ff6666; }
         }
 
-        #endText {
-            font-size: 1.5em;
-            margin-top: 20px;
+        .shape {
+            position: fixed;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .flower {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 40px solid #ffcc99; /* Flower color */
+            border-radius: 50%;
+            animation: bloom 3s infinite alternate;
+        }
+
+        .star {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 60px solid #ffd699; /* Star color */
+            position: absolute;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        .circle {
+            width: 60px;
+            height: 60px;
+            background-color: #ffcc99; /* Circle color */
+            border-radius: 50%;
+            animation: rotate 4s infinite linear;
+        }
+
+        /* Add more shapes as needed */
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 52px solid #66ccff; /* Triangle color */
+            position: absolute;
+            animation: rotate 3s infinite alternate;
+        }
+
+        .hexagon {
+            width: 60px;
+            height: 34.64px;
+            background-color: #cc99ff; /* Hexagon color */
+            position: absolute;
+            clip-path: polygon(50% 0%, 0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%);
+            animation: rotate 5s infinite alternate;
+        }
+
+        .square {
+            width: 60px;
+            height: 60px;
+            background-color: #66ff99; /* Square color */
+            position: absolute;
+            animation: rotate 2s infinite alternate;
+        }
+
+        .pentagon {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 58px solid #ffcc66; /* Pentagon color */
+            position: absolute;
+            clip-path: polygon(50% 0%, 0% 50%, 25% 100%, 75% 100%, 100% 50%);
+            animation: rotate 4s infinite alternate;
+        }
+
+        .octagon {
+            width: 60px;
+            height: 60px;
+            background-color: #ff6666; /* Octagon color */
+            position: absolute;
+            clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%);
+            animation: rotate 3s infinite alternate;
+        }
+
+        .rhombus {
+            width: 60px;
+            height: 60px;
+            background-color: #ffccff; /* Rhombus color */
+            position: absolute;
+            transform: rotate(45deg);
+            animation: rotate 4s infinite alternate;
+        }
+
+        .rectangle {
+            width: 90px;
+            height: 45px;
+            background-color: #99ccff; /* Rectangle color */
+            position: absolute;
+            animation: rotate 5s infinite alternate;
+        }
+
+        .parallelogram {
+            width: 90px;
+            height: 45px;
+            background-color: #ff9966; /* Parallelogram color */
+            position: absolute;
+            transform: skew(20deg);
+            animation: rotate 6s infinite alternate;
+        }
+
+        .shape:hover {
+            transform: scale(1.2);
+            background-color: #ff9999;
+        }
+
+        @keyframes bloom {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-30px) rotate(360deg);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
-    <div id="about" class="slide active" onclick="showNextSlide()">
-        <h2>About Me</h2>
-        <div id="aboutContent">
-            <p>This is a brief introduction about me and why I love Iulia so much. I could talk for hours about our adventures, the laughter, and the love that binds us together.</p>
-        </div>
-    </div>
+    <div class="flower shape" style="top: 100px; left: 100px;"></div>
+    <div class="star shape" style="top: 200px; left: 300px;"></div>
+    <div class="circle shape" style="top: 400px; left: 500px;"></div>
+    <div class="triangle shape" style="top: 100px; left: 700px;"></div>
+    <div class="hexagon shape" style="top: 300px; left: 100px;"></div>
+    <div class="square shape" style="top: 500px; left: 300px;"></div>
+    <div class="pentagon shape" style="top: 700px; left: 500px;"></div>
+    <div class="octagon shape" style="top: 300px; left: 700px;"></div>
+    <div class="rhombus shape" style="top: 500px; left: 1000px;"></div>
+    <div class="rectangle shape" style="top: 700px; left: 1200px;"></div>
+    <!-- Add more shapes as needed -->
 
-    <div id="quotes" class="slide" onclick="showNextSlide()">
-        <h2>Quotes</h2>
-        <div class="carousel" id="quoteCarousel">
-            <div class="quote active">"To be or not to be, that is the question." - Hamlet</div>
-            <div class="quote">"Love looks not with the eyes, but with the mind." - A Midsummer Night's Dream</div>
-            <div class="quote"> "To live is to suffer!"</div>
-        </div>
-    </div>
+    <div id="header" onclick="changeText()">I love Iulia from the bottom of my heart</div>
 
-    <div id="flowers" class="slide" onclick="showNextSlide()">
-        <img id="flowerImage" src="https://www.gotokyo.org/en/story/guide/hanami-guide/images/xsg009_1376_202.jpg.pagespeed.ic.gK_RKSB0Y7.jpg"  alt="Beautiful Flowers">
-    </div>
-
-    <div id="endText" class="slide">
-        I simply love you!
-    </div>
+    <div id="Sunshine">How can you be so beautiful</div>
+    <div id="End">I simply love you</div>
 
     <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        let imageInterval;
+        const shapes = document.querySelectorAll('.shape');
 
-        function showNextSlide() {
-            slides[currentSlideIndex].classList.remove('active'); // Hide the current slide
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length; // Move to the next slide
-            slides[currentSlideIndex].classList.add('active'); // Show the next slide
+        shapes.forEach((shape) => {
+            shape.addEventListener('click', () => {
+                shape.style.backgroundColor = getRandomColor();
+            });
+        });
 
-            if (currentSlideIndex === slides.length - 1) {
-                // If it's the last slide, start the image reveal loop
-                imageInterval = setInterval(showNextSlide, 5000); // Show next slide every 5 seconds
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
             }
+            return color;
+        }
+
+        function changeText() {
+            const header = document.getElementById('header');
+            header.innerText = "Iulia, you are my sunshine!";
+            header.style.backgroundColor = '#ffd699';
+            header.style.color = '#663300';
         }
     </script>
 </body>
